@@ -6,7 +6,7 @@ pipeline{
             steps{
             script{
                 dir('test'){
-                git branch: 'master', url: 'git@github.fidor.de:kuzhel/changelogtest.git'
+                git 'https://github.com/vbkuzhel/trackchange.git'
                 echo "class is ${currentBuild.getChangeSets().getClass()}"
                 def changes="" 
                 if (currentBuild.getChangeSets().size()>0){
