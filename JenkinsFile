@@ -1,0 +1,28 @@
+def message=""
+pipeline{
+    agent any
+    stages{
+        stage('test'){
+            steps{
+            script{
+                dir('test'){
+                git branch: 'master', url: 'git@github.fidor.de:kuzhel/changelogtest.git'
+                echo "class is ${currentBuild.getChangeSets().getClass()}"
+                def changes="" 
+                if (currentBuild.getChangeSets().size()>0){
+                    for (changelist in currentBuild.getChangeSets()){
+                     for (change in changelist){
+                         if (changes==""){changes ="${change.getMsg()}"} else changes =changes +";${change.getMsg()}}"
+                     }   
+                    }
+                   
+                    hipchatSend color: 'GREEN', credentialId: 'hipchatOneyTestPushesRoomTocken', message: "This is a test message. Please ignore it . the changelog is: ${changes}", room: '779', sendAs: 'jenkins', server: 'chat.fidor.de', v2enabled: true 
+                }
+                
+                
+                }
+            }
+            }
+        }
+    }
+}
