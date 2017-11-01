@@ -15,7 +15,7 @@ pipeline{
                          if (changes==""){changes ="${change.getMsg()} ${change.getAuthorName()}"} else changes =changes +";${change.getMsg()  ${change.getAuthorName()}}}"
                      }   
                     }
-                   echo changes
+                   echo "changes are : ${changes}"
                     //hipchatSend color: 'GREEN', credentialId: 'hipchatOneyTestPushesRoomTocken', message: "This is a test message. Please ignore it . the changelog is: ${changes}", room: '779', sendAs: 'jenkins', server: 'chat.fidor.de', v2enabled: true 
                 }
                 
