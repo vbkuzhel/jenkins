@@ -8,7 +8,7 @@ pipeline{
                 dir('test'){
                 git 'https://github.com/vbkuzhel/trackchange.git'
                 echo "Build class is"
-                echo "class is ${currentBuild.getChangeSets().getClass() ${currentBuild.getClass()}}"
+                echo "class is  ${currentBuild.getClass()}"
                 def changes="" 
                 if (currentBuild.getChangeSets().size()>0){
                     for (changelist in currentBuild.getChangeSets()){
