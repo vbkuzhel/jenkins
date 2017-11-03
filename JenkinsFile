@@ -13,8 +13,8 @@ pipeline{
                 if (currentBuild.getChangeSets().size()>0){
                     for (changelist in currentBuild.getChangeSets()){
                      for (change in changelist){
-                         if (changes==""){changes ="${change.getCommentAnnotated()}: ${change.getCommitId()} ${change.getClass()}  ${change.getRevission()}"} 
-                          else changes =changes +"\n${change.getCommentAnnotated()}: ${change.getCommitId()}  ${change.getClass()}  ${change.getRevission()}"
+                         if (changes==""){changes ="${change.getCommentAnnotated()}: ${change.getCommitId()} ${change.getClass()}  ${change.getRevission()} ${change.getMsgEscaped()}"} 
+                          else changes =changes +"\n${change.getCommentAnnotated()}: ${change.getCommitId()}  ${change.getClass()}  ${change.getRevission()} ${change.getMsgEscaped()}"
                      }   
                     }
                    echo "changes are : ${changes}"
