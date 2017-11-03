@@ -6,7 +6,7 @@ pipeline{
             steps{
             script{
                 dir('test'){
-                git 'https://github.com/vbkuzhel/trackchange.git'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], browser: [$class: 'GithubWeb', repoUrl: ''], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vbkuzhel/trackchange.git']]])
                 echo "Build class is"
                 echo "class is  ${currentBuild.getClass()}"
                 def changes="" 
