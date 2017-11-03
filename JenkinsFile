@@ -11,11 +11,18 @@ pipeline{
                 echo "Build class is"
                 echo "class is  ${currentBuild.getClass()}"
                 def changes="" 
+                def rb= new RepositoryBrowser()
+                def link="" 
                 if (currentBuild.getChangeSets().size()>0){
                     for (changelist in currentBuild.getChangeSets()){
                      for (change in changelist){
-                         if (changes==""){changes ="${change.getCommentAnnotated()}: ${change.getCommitId()} ${change.getClass()}  ${change.getRevision()} ${change.getMsgEscaped()}"} 
-                          else changes =changes +"\n${change.getCommentAnnotated()}: ${change.getCommitId()}  ${change.getClass()}  ${change.getRevision()} ${change.getMsgEscaped()}"
+                         if (changes==""){
+                             link=rb.getChangeSetLink(change).toString()
+                             changes ="${change.getCommentAnnotated()}: ${change.getCommitId()} ${change.getClass()}  ${change.getRevision()} ${change.getMsgEscaped()} ${link}"
+                             } 
+                          else {
+                              changes =changes +"\n${change.getCommentAnnotated()}: ${change.getCommitId()}  ${change.getClass()}  ${change.getRevision()} ${change.getMsgEscaped()} ${link}"
+                          }
                      }   
                     }
                    echo "changes are : ${changes}"
