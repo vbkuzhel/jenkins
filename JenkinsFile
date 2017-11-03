@@ -1,4 +1,4 @@
-hudson.scm.*
+import hudson.scm.*
 def message=""
 pipeline{
     agent any
